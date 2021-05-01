@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
   res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
 });
 
-app.get('/webhooks', function(req, res) {
+app.get('/Callback', function(req, res) {
   if (req.param('hub.mode') != 'subscribe'
       || req.param('hub.verify_token') != process.env.VERIFY_TOKEN) {
     res.sendStatus(401);
@@ -27,7 +27,7 @@ app.get('/webhooks', function(req, res) {
   res.send(req.param('hub.challenge'));
 });
 
-app.post('/webhooks', function(req, res) {
+app.post('/Callback', function(req, res) {
   if (!req.isXHubValid()) {
     console.log('Received webhooks update with invalid X-Hub-Signature');
     res.sendStatus(401);
